@@ -16,3 +16,22 @@
 - Error handling
 - Tree shaking - removing unused code from our files
 - Different build for prod and dev
+
+# Namaste Food
+
+/*-Header
+    - Logo
+    - Nav items
+-Body
+    - Search
+    - Restaurant container
+        - Restaurant card
+            - Img
+            - Name of Restaurant, star rating, cuisine, delivery time
+    - Restaurant card
+-Footer
+    - Copyright
+    - links
+    - Address
+    - Contact information
+*/
