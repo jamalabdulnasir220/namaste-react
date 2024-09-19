@@ -1,5 +1,8 @@
+import { URL } from "../utils/constants";
+
 const RestaurantCard = ({ resData }) => {
-  const { title, url, id, rate } = resData;
+  const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
+    resData?.info;
 
   const styleCard = {
     backgroundColor: "#f0f0f0",
@@ -7,11 +10,12 @@ const RestaurantCard = ({ resData }) => {
 
   return (
     <div className="res-card" style={styleCard}>
-      <img className="res-logo" src={url} alt="res-logo" />
-      <h3>{title}</h3>
-      <h4>{id}</h4>
-      <h4>{rate} stars</h4>
-      <h4>38 minutes</h4>
+      <img className="res-logo" src={URL + cloudinaryImageId} alt="res-logo" />
+      <h3>{name}</h3>
+      <h4>{cuisines.join(", ")}</h4>
+      <h4>{avgRating} stars</h4>
+      <h4>{costForTwo}</h4>
+      <h4>{sla?.slaString}</h4>
     </div>
   );
 };
