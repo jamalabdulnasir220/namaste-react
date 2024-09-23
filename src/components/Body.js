@@ -2,9 +2,12 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [resData, setResData] = useState([]);
+
+  const onlineStatus = useOnlineStatus();
 
   //when we are implementing our search functionality, we don't want to filter the main resData, so we create a copy and apply the filter there.
   const [filteredData, setFilteredData] = useState([]);
@@ -21,9 +24,9 @@ const Body = () => {
     );
     const json = await data.json();
 
-    console.log(
-      json?.data?.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    );
+    // console.log(
+    //   json?.data?.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    // );
     setResData(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -31,6 +34,8 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if(onlineStatus === false) return <h1>Looks like you're offline, please check your internet connection!!!</h1>
 
   return resData.length === 0 ? (
     <Shimmer />
@@ -68,7 +73,7 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-container">
-        {filteredData.map((restaurant) => (
+        {filteredData?.map((restaurant) => (
           <Link
             style={{
               textDecoration: 'none',
