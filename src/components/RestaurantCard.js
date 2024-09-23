@@ -5,13 +5,13 @@ const RestaurantCard = ({ resData }) => {
     resData?.info;
 
   const styleCard = {
-    backgroundColor: "#f0f0f0",
+    // backgroundColor: "#f0f0f0",
   };
 
   return (
-    <div className="res-card" style={styleCard}>
-      <img className="res-logo" src={URL + cloudinaryImageId} alt="res-logo" />
-      <h3>{name}</h3>
+    <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-400" style={styleCard}>
+      <img className="rounded-lg" src={URL + cloudinaryImageId} alt="res-logo" />
+      <h3 className="font-bold py-4 text-lg">{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
       <h4>{costForTwo}</h4>
