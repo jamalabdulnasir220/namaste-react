@@ -7,8 +7,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   const [resData, setResData] = useState([]);
 
-  console.log(resData);
-
+ 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   const onlineStatus = useOnlineStatus();
