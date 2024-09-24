@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -6,6 +6,10 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [resData, setResData] = useState([]);
+
+  console.log(resData);
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   const onlineStatus = useOnlineStatus();
 
@@ -35,7 +39,12 @@ const Body = () => {
     );
   };
 
-  if(onlineStatus === false) return <h1>Looks like you're offline, please check your internet connection!!!</h1>
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you're offline, please check your internet connection!!!
+      </h1>
+    );
 
   return resData.length === 0 ? (
     <Shimmer />
@@ -62,31 +71,34 @@ const Body = () => {
           </button>
         </div>
         <div className="m-4 p-4 flex items-center">
-        <button
-          onClick={() => {
-            const filteredData = resData.filter(
-              (restaurant) => restaurant.info.avgRating > 4
-            );
-            setFilteredData(filteredData);
-          }}
-          className="px-4 py-2 bg-gray-100"
-        >
-          Top rated restaurants
-        </button>
+          <button
+            onClick={() => {
+              const filteredData = resData.filter(
+                (restaurant) => restaurant.info.avgRating > 4
+              );
+              setFilteredData(filteredData);
+            }}
+            className="px-4 py-2 bg-gray-100"
+          >
+            Top rated restaurants
+          </button>
         </div>
-        
       </div>
       <div className="flex flex-wrap">
         {filteredData?.map((restaurant) => (
           <Link
             style={{
-              textDecoration: 'none',
-              color: 'black'
+              textDecoration: "none",
+              color: "black",
             }}
             key={restaurant.info.id}
             to={`/restaurants/${restaurant?.info?.id}`}
           >
-            <RestaurantCard resData={restaurant} />
+            {restaurant?.info?.isOpen ? (
+              <RestaurantCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
