@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = ({ resData }) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     resData?.info;
+
+  const {loggedInUser} = useContext(UserContext)
 
   const styleCard = {
     // backgroundColor: "#f0f0f0",
@@ -23,6 +27,8 @@ const RestaurantCard = ({ resData }) => {
       <h4>{avgRating} stars</h4>
       <h4>{costForTwo}</h4>
       <h4>{sla?.slaString}</h4>
+      <h4>User: {loggedInUser}</h4>
+
     </div>
   );
 };

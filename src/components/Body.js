@@ -1,14 +1,16 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [resData, setResData] = useState([]);
 
- 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
+  
 
   const onlineStatus = useOnlineStatus();
 
@@ -37,6 +39,8 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   if (onlineStatus === false)
     return (
@@ -81,6 +85,14 @@ const Body = () => {
           >
             Top rated restaurants
           </button>
+        </div>
+        <div className="m-4 p-4 flex items-center">
+          <label>UserName :</label>
+          <input
+            className="border border-black p-2"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex flex-wrap">
