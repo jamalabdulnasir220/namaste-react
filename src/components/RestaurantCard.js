@@ -5,6 +5,8 @@ import UserContext from "../utils/UserContext";
 const RestaurantCard = ({ resData }) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     resData?.info;
+  
+  
 
   const {loggedInUser} = useContext(UserContext)
 
@@ -14,6 +16,7 @@ const RestaurantCard = ({ resData }) => {
 
   return (
     <div
+      data-testid="rescard"
       className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-400"
       style={styleCard}
     >

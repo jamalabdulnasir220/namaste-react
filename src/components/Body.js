@@ -56,6 +56,7 @@ const Body = () => {
       <div className="flex">
         <div className="m-4 p-4">
           <input
+            data-testid="search"
             type="text"
             className="border border-solid border-black"
             value={searchText}

@@ -20,7 +20,7 @@ const AppLayout = () => {
   useEffect(() => {
     //Make an api call,
     const data = {
-      name: "Panda saeed",
+      name: "",
     };
     setUserName(data.name);
   }, []);
